@@ -1,7 +1,7 @@
 import React from 'react';
-import ExampleWorkModal from './example-work-modal';
+import PortfolioExampleModal from './portfolio-example-modal';
 
-class ExampleWork extends React.Component {
+class PortfolioExample extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,45 +30,44 @@ class ExampleWork extends React.Component {
   render () {
     return (
       <span>
-        <section className="section section--alignCentered section--description">
+        <section className="oaws-row-padding">
 
           { this.props.work.map( (example, idx) => {
               return (
-                <ExampleWorkBubble example={example} key={idx}
+                <PortfolioExampleBox example={example} key={idx}
                   openModal={this.openModal}/>
               )
             })
           }
-
+        
         </section>
 
-        <ExampleWorkModal example={this.state.selectedExample}
+        <PortfolioExampleModal example={this.state.selectedExample}
           open={this.state.modalOpen} closeModal={this.closeModal}/>
       </span>
     )
   }
 }
 
-class ExampleWorkBubble extends React.Component {
+class PortfolioExampleBox extends React.Component {
   render () {
     let example = this.props.example;
     return (
-      <div className="section__exampleWrapper"
+      <div className="oaws-col l3 m6 oaws-margin-bottom section_exampleBoxWrapper"
         onClick={ (evt) =>  this.props.openModal(evt, example) }>
-      <div className="section__example">
+      <dl className="oaws-display-container">
+        <dt className="oaws-display-topleft oaws-black oaws-padding">
+          { example.title }
+        </dt>
         <img alt={ example.image.desc }
-             className="section__exampleImage"
+             className="oaws-example-image"
              src={ example.image.src }/>
-        <dl className="color--cloud">
-          <dt className="section__exampleTitle section__text--centered">
-            { example.title }
-          </dt>
-          <dd></dd>
-        </dl>
+        <dd></dd>
+      </dl>
       </div>
-    </div>
     )
   }
 }
-export default ExampleWork;
-export { ExampleWorkBubble };
+
+export default PortfolioExample;
+export { PortfolioExampleBox };

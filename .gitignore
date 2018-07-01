@@ -64,4 +64,4 @@ dist
 .DS_Store
 
 # NPM Package Lock
-package-lock.jsonssssssss
+package-lock.json

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ExampleWork, {ExampleWorkBubble} from '../js/example-work';
+import PortfolioExample, {PortfolioExampleBox} from '../js/portfolio-example';
 
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -8,32 +8,32 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const myWork = [
   {
-    'title': "Work Example",
+    'title': "AWS Serverless Architecture",
     'image': {
-      'desc': "example screenshot of a project involving infratrcuture-as-code",
-      'src': "images/example1.png",
+      'desc': "Screenshot of example AWS Serverless Architecture",
+      'src': "images/ServerlessArchitecture.jpg",
       'comment': ""
     }
   },
   {
-    'title': "Portfolio Boilerplate",
+    'title': "AWS Infrastructure-as-Code",
     'image': {
-      'desc': "Serverless Portfolio",
-      'src': "images/example2.png",
+      'desc': "Screenshot of example AWS CloudFormation Template",
+      'src': "images/cfn-iac.jpg",
       'comment': ""
     }
   }
 ]
 
-describe("ExampleWork Component", () => {
-  let component = shallow(<ExampleWork work={myWork}/>);
+describe("PortfolioExample Component", () => {
+  let component = shallow(<PortfolioExample work={myWork}/>);
 
   it("Test should be a 'span' element", () => {
     expect(component.type()).toEqual('span');
   });
 
   it("Test should contain a child for each work example", () => {
-    expect(component.find("ExampleWorkBubble").length).toEqual(myWork.length);
+    expect(component.find("PortfolioExampleBox").length).toEqual(myWork.length);
   });
 
   it("Test should allow the modal to open and close", () => {
@@ -45,10 +45,10 @@ describe("ExampleWork Component", () => {
 
 });
 
-describe("ExampleWorkBubble Component", () => {
+describe("PortfolioExampleModal Component", () => {
   let mockOpenModalFn = jest.fn();
 
-  let component = shallow(<ExampleWorkBubble example={myWork[1]}
+  let component = shallow(<PortfolioExampleBox example={myWork[1]}
     openModal={mockOpenModalFn}/>);
 
   let images = component.find("img");
@@ -62,7 +62,7 @@ describe("ExampleWorkBubble Component", () => {
   });
 
   it("Test should call the openModal handler when clicked", () => {
-    component.find(".section__exampleWrapper").simulate('click');
+    component.find(".section_exampleBoxWrapper").simulate('click');
     expect(mockOpenModalFn).toHaveBeenCalled();
   });
 });
